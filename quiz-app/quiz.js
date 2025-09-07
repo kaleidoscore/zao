@@ -76,16 +76,20 @@ function check(i) {
 // --- ヒント処理 ---
 function openHint() {
   const d = QUIZ[idx];
-  hintText.textContent = d.hint;
-  hintPopup.classList.remove('hidden');
+  document.getElementById("quiz-hint-text").textContent = d.hint;
+  document.getElementById("quiz-hint-popup").classList.remove("hidden");
 }
 function closeHint() {
-  hintPopup.classList.add('hidden');
+  document.getElementById("quiz-hint-popup").classList.add("hidden");
 }
 
-hintBtn.onclick = openHint;
-closeHintBtn.onclick = closeHint;
-hintPopup.addEventListener('click', e => { if (e.target === hintPopup) closeHint(); });
+document.getElementById("hint-btn").onclick = openHint;
+document.getElementById("quiz-close-hint").onclick = closeHint;
+
+document.getElementById("quiz-hint-popup").addEventListener("click", e => {
+  if (e.target.id === "quiz-hint-popup") closeHint();
+});
+
 
 window.addEventListener('hashchange', () => { idx = getIndex(); render(); });
 render();
