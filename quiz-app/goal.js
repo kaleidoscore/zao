@@ -5,22 +5,23 @@ function checkAnswer() {
   const surveyBtn = document.getElementById('survey-btn');
 
   if (input === "シャンツェ") {
+    // Congratulation! を中央に表示
     feedback.textContent = "Congratulation!";
     feedback.classList.add("success-text");
 
     // 判定ボタンをフェードアウト
     checkBtn.classList.add("fade-out");
 
-    // フェードアウト後に非表示へ（0.6秒後）
+    // フェードアウト完了後に完全に非表示
     setTimeout(() => {
-      checkBtn.style.display = "none";   // ← classList.add("hidden") ではなく直接 display:none
-    }, 600);
+      checkBtn.classList.add("hidden");
 
-    // アンケートボタンを2秒後に表示
-    setTimeout(() => {
-      surveyBtn.classList.remove("hidden");
-      surveyBtn.classList.add("fade-in"); // ← フェードインさせる場合
-    }, 2000);
+      // 2秒後にアンケートボタンを表示
+      setTimeout(() => {
+        surveyBtn.classList.remove("hidden");
+      }, 2000);
+
+    }, 600); // フェードアウト時間に合わせる
 
   } else {
     feedback.textContent = "答えが違うみたいだ...。キーワードをもう一度見直してみよう！";
