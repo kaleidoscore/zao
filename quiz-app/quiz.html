@@ -18,18 +18,20 @@
       <div id="keyword-block" class="keyword-block hidden" aria-live="polite"></div>
     </section>
 
-    <button id="hint-btn" class="btn hint-btn" aria-haspopup="dialog" aria-controls="hint-popup">ヒントを見る</button>
+    <!-- ヒントボタン -->
+    <button id="quiz-hint-btn" class="btn hint-btn" aria-haspopup="dialog" aria-controls="quiz-hint-popup">ヒントを見る</button>
   </main>
 
-  <div id="hint-popup" class="hint-popup hidden" role="dialog" aria-modal="true" aria-labelledby="hint-title">
+  <!-- ヒントポップアップ -->
+  <div id="quiz-hint-popup" class="hint-popup hidden" role="dialog" aria-modal="true" aria-labelledby="quiz-hint-title">
     <div class="hint-content">
-      <h2 id="hint-title" class="sr-only">ヒント</h2>
-      <p id="hint-text"></p>
-      <button id="close-hint" class="btn close-btn" aria-label="ヒントを閉じる">✖</button>
+      <h2 id="quiz-hint-title" class="sr-only">ヒント</h2>
+      <p id="quiz-hint-text"></p>
+      <button id="quiz-close-hint" class="btn close-btn" aria-label="ヒントを閉じる">✖</button>
     </div>
   </div>
 
-  <script src="quiz.js?v=2"></script>
-<script src="move.js?v=2"></script>
+  <script src="quiz.js?v=3"></script>
+  <script src="move.js?v=3"></script>
 </body>
 </html>
