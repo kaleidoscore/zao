@@ -73,8 +73,12 @@ function check(i) {
 // --- ヒント処理 ---
 function openHint() {
   const d = QUIZ[idx];
+  const popup = document.getElementById("quiz-hint-popup");
   document.getElementById("quiz-hint-text").textContent = d.hint;
-  document.getElementById("quiz-hint-popup").classList.remove("hidden");
+  popup.classList.remove("hidden");
+
+  // デバッグ強制表示
+  popup.style.display = "flex";
 
   console.log("openHint executed: hint =", d.hint);
 }
