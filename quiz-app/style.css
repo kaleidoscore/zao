@@ -148,20 +148,18 @@ button, .btn {
 }
 
 /* ヒントポップアップ */
-/* ヒントポップアップ（最初は非表示にする） */
-/* ヒントポップアップ */
 .hint-popup {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  display: flex; /* デフォルトは表示状態 */
+  display: flex; /* flex を基準 */
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  background: rgba(0,0,0,0.4); /* 背景クリック判定用 */
+  background: rgba(0,0,0,0.4); /* 背景クリック用 */
 }
 
-/* 非表示にする場合は .hidden を使う */
+/* 非表示は hidden クラスで制御 */
 .hint-popup.hidden {
   display: none;
 }
