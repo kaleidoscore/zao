@@ -73,10 +73,10 @@ function check(i) {
 function openHint() {
   const d = QUIZ[idx];
   document.getElementById("quiz-hint-text").textContent = d.hint;
-  document.getElementById("quiz-hint-popup").classList.add("active"); // ← active を追加
+  document.getElementById("quiz-hint-popup").classList.remove("hidden");
 }
 function closeHint() {
-  document.getElementById("quiz-hint-popup").classList.remove("active"); // ← active を外す
+  document.getElementById("quiz-hint-popup").classList.add("hidden");
 }
 
 document.getElementById("hint-btn").onclick = openHint;
@@ -84,6 +84,7 @@ document.getElementById("quiz-close-hint").onclick = closeHint;
 document.getElementById("quiz-hint-popup").addEventListener("click", e => {
   if (e.target.id === "quiz-hint-popup") closeHint();
 });
+
 // イベント設定
 document.getElementById("hint-btn").addEventListener("click", openHint);
 document.getElementById("quiz-close-hint").addEventListener("click", closeHint);
