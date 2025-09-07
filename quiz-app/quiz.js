@@ -92,3 +92,21 @@ window.addEventListener('hashchange', () => { idx = getIndex(); render(); });
 
 // 初期表示
 render();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hintBtn = document.getElementById("hint-btn");
+  const closeHintBtn = document.getElementById("quiz-close-hint");
+  const hintPopup = document.getElementById("quiz-hint-popup");
+
+  if (hintBtn) {
+    hintBtn.addEventListener("click", openHint);
+  }
+  if (closeHintBtn) {
+    closeHintBtn.addEventListener("click", closeHint);
+  }
+  if (hintPopup) {
+    hintPopup.addEventListener("click", e => {
+      if (e.target.id === "quiz-hint-popup") closeHint();
+    });
+  }
+});
