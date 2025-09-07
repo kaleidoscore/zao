@@ -27,3 +27,25 @@ button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;back
 .slot.filled{border-color:#20c997;border-style:solid;}
 .tip-list{list-style:none;padding:0;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
 .tip{padding:6px 10px;background:rgba(255,255,255,.8);border-radius:10px;}
+/* ヒントポップアップ */
+.hint-popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none; /* ポップアップ外はクリック無効 */
+}
+
+/* 半透明ブロック化（背景は白のガラス風） */
+.hint-content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  pointer-events: auto; /* 中身だけ操作可能 */
+}
