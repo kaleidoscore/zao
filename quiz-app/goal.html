@@ -41,6 +41,19 @@
       <div id="goal-feedback" class="feedback" aria-live="polite"></div>
       <a id="survey-link" class="btn link-btn hidden" href="https://forms.gle/mfHe6rbxjTjCdYtG6" target="_blank" rel="noopener">アンケートにご協力お願いします</a>
     </section>
+<!-- 答え入力欄 -->
+<input type="text" id="answer" placeholder="キーワードを入力" />
+
+<!-- 判定ボタン -->
+<button id="check-btn" class="btn" onclick="checkAnswer()">判定する</button>
+
+<!-- アンケートボタン（最初は非表示） -->
+<a id="survey-btn" class="btn hidden" href="https://forms.gle/mfHe6rbxjTjCdYtG6" target="_blank">
+  アンケートにご協力お願いします
+</a>
+
+<!-- フィードバック表示 -->
+<div id="goal-feedback"></div>
   </main>
   <script>
   (function(){
