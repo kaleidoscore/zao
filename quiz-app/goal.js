@@ -8,12 +8,19 @@ function checkAnswer() {
     feedback.textContent = "Congratulation!";
     feedback.classList.add("success-text");
 
-    checkBtn.classList.add("hidden"); // 判定ボタン消す
+    // 判定ボタンをフェードアウト
+    checkBtn.classList.add("fade-out");
 
-    // 2秒後にアンケートボタン表示
+    // フェードアウト完了後に非表示にする
     setTimeout(() => {
-      surveyBtn.classList.remove("hidden");
-    }, 2000);
+      checkBtn.classList.add("hidden");
+
+      // さらに 2秒後にアンケートボタン表示
+      setTimeout(() => {
+        surveyBtn.classList.remove("hidden");
+      }, 2000);
+
+    }, 600); // transition の 0.6秒に合わせる
 
   } else {
     feedback.textContent = "答えが違うみたいだ...。キーワードをもう一度見直してみよう！";
