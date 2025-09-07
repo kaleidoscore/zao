@@ -1,25 +1,98 @@
-body{
-  margin:0;
-  font-family:sans-serif;
+body {
+  margin: 0;
+  font-family: sans-serif;
   background:
     linear-gradient(0deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
     url('IMG_5086.JPG') center center / cover fixed no-repeat;
-  -webkit-tap-highlight-color:transparent;
+  -webkit-tap-highlight-color: transparent;
 }
-.quiz-container{max-width:720px;margin:0 auto;padding:16px;}
-.app-title{text-align:center;color:#045e63;text-shadow:0 1px 2px rgba(255,255,255,.6);}
-.card{border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,.15);padding:16px;}
-.glass{background:rgba(255,255,255,0.86);backdrop-filter:blur(2px);}
-.question{font-size:20px;margin:10px 0;}
-.choices{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
-button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;background:linear-gradient(90deg,#66d9ff,#20c997);color:#fff;font-weight:700;width:100%;}
-.feedback{margin-top:12px;font-weight:700;}
-.success-text{color:#7bd23c;font-size:22px;animation:pop .35s ease;}
-@keyframes pop{from{transform:scale(.9);opacity:.5;}to{transform:scale(1);opacity:1;}}
-.keyword-block{margin-top:10px;padding:12px;background:rgba(255,255,255,0.85);color:#20c997;font-weight:800;border-radius:12px;}
-.hidden{display:none!important;}
+
+.quiz-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.app-title {
+  text-align: center;
+  color: #045e63;
+  text-shadow: 0 1px 2px rgba(255,255,255,.6);
+}
+
+.card {
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  padding: 16px;
+}
+
+.glass {
+  background: rgba(255,255,255,0.86);
+  backdrop-filter: blur(2px);
+}
+
+.question {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.choices {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+button, .btn {
+  padding: 12px 14px;
+  border: none;
+  border-radius: 28px;
+  font-size: 18px;
+  background: linear-gradient(90deg,#66d9ff,#20c997);
+  color: #fff;
+  font-weight: 700;
+  width: 100%;
+}
+
+.feedback {
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.success-text {
+  color: #7bd23c;
+  font-size: 22px;
+  animation: pop .35s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(.9); opacity: .5; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.keyword-block {
+  margin-top: 10px;
+  padding: 12px;
+  background: rgba(255,255,255,0.85);
+  color: #20c997;
+  font-weight: 800;
+  border-radius: 12px;
+}
+
+/* 非表示クラス（統一版） */
+.hidden {
+  display: none;
+}
+
 /* puzzle */
-.key-pool{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0;}
+.key-pool {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 12px 0;
+}
+
 .chip {
   min-width: 60px;
   padding: 10px;
@@ -28,9 +101,21 @@ button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;back
   border-radius: 14px;
   font-weight: 800;
   color: #003333;                       /* 濃い文字色で見やすく */
+  text-shadow: 2px 2px 4px rgba(255,255,255,0.8); /* 白縁で視認性UP */
+  font-size: 1.5rem;
 }
-.chip:disabled{opacity:.5;}
-.slot-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:6px 0;}
+
+.chip:disabled {
+  opacity: .5;
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 10px;
+  margin: 6px 0;
+}
+
 .slot {
   min-height: 56px;
   background: rgba(64, 224, 208, 0.85); /* ターコイズ寄り透過 */
@@ -39,10 +124,29 @@ button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;back
   font-size: 22px;
   font-weight: 800;
   color: #003333;                       /* 文字がはっきり見える */
+  text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
 }
-.slot.filled{border-color:#20c997;border-style:solid;}
-.tip-list{list-style:none;padding:0;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
-.tip{padding:6px 10px;background:rgba(255,255,255,.8);border-radius:10px;}
+
+.slot.filled {
+  border-color: #20c997;
+  border-style: solid;
+}
+
+.tip-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tip {
+  padding: 6px 10px;
+  background: rgba(255,255,255,.8);
+  border-radius: 10px;
+}
+
 /* ヒントポップアップ */
 .hint-popup {
   position: fixed;
@@ -65,6 +169,7 @@ button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;back
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   pointer-events: auto; /* 中身だけ操作可能 */
 }
+
 /* 不正解になった選択肢 */
 .choice.wrong {
   background: #e74c3c !important; /* 赤 */
@@ -72,6 +177,7 @@ button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;back
   border: none;
 }
 
+/* Congratulation! のスタイル */
 #goal-feedback.success-text {
   position: fixed;
   top: 50%;
@@ -86,9 +192,7 @@ button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;back
   padding: 20px 30px;
   border-radius: 16px;
   animation: pop 0.5s ease;
-}
-.hidden {
-  display: none;
+  text-align: center;
 }
 
 /* フェードアウト用クラス */
@@ -97,18 +201,3 @@ button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;back
   transition: opacity 0.6s ease; /* 0.6秒で消える */
 }
 
-#goal-feedback.success-text {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #20c997;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
-  z-index: 2000;
-  background: rgba(255,255,255,0.85);
-  padding: 20px 30px;
-  border-radius: 16px;
-  animation: pop 0.5s ease;
-}
