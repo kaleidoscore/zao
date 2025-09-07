@@ -79,13 +79,16 @@ function openHint() {
   document.getElementById("quiz-hint-text").textContent = d.hint;
   document.getElementById("quiz-hint-popup").classList.remove("hidden");
 }
+
 function closeHint() {
   document.getElementById("quiz-hint-popup").classList.add("hidden");
 }
 
+// ヒントボタンにイベントを設定
 document.getElementById("hint-btn").onclick = openHint;
 document.getElementById("quiz-close-hint").onclick = closeHint;
 
+// ポップアップの外側をクリックしたら閉じる
 document.getElementById("quiz-hint-popup").addEventListener("click", e => {
   if (e.target.id === "quiz-hint-popup") closeHint();
 });
