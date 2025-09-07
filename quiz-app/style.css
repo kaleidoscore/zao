@@ -20,10 +20,26 @@ button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;back
 .hidden{display:none!important;}
 /* puzzle */
 .key-pool{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0;}
-.chip{min-width:60px;padding:10px;background:rgba(255,255,255,.85);border:2px solid #00bfa6;border-radius:14px;font-weight:800;}
+.chip {
+  min-width: 60px;
+  padding: 10px;
+  background: rgba(64, 224, 208, 0.9); /* ターコイズ */
+  border: 2px solid #007f7f;            /* 濃いターコイズ枠 */
+  border-radius: 14px;
+  font-weight: 800;
+  color: #003333;                       /* 濃い文字色で見やすく */
+}
 .chip:disabled{opacity:.5;}
 .slot-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:6px 0;}
-.slot{min-height:56px;background:rgba(255,255,255,.7);border:2px dashed rgba(0,0,0,.2);border-radius:12px;font-size:22px;font-weight:800;}
+.slot {
+  min-height: 56px;
+  background: rgba(64, 224, 208, 0.85); /* ターコイズ寄り透過 */
+  border: 2px dashed #007f7f;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #003333;                       /* 文字がはっきり見える */
+}
 .slot.filled{border-color:#20c997;border-style:solid;}
 .tip-list{list-style:none;padding:0;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
 .tip{padding:6px 10px;background:rgba(255,255,255,.8);border-radius:10px;}
