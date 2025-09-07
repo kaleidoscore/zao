@@ -88,8 +88,5 @@ document.getElementById("quiz-hint-popup").addEventListener("click", e => {
 // URL変更で問題切り替え
 window.addEventListener('hashchange', () => { idx = getIndex(); render(); });
 
-render();
-
-
-window.addEventListener('hashchange', () => { idx = getIndex(); render(); });
+// 初期表示
 render();
