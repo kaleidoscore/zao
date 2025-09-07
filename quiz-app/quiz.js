@@ -55,18 +55,24 @@ function render() {
 
 function check(i) {
   const d = QUIZ[idx];
+  const choiceButtons = document.querySelectorAll('.choice'); // ← 追加
+
   if (i === d.correct) {
     fEl.textContent = 'Success!';
     fEl.classList.add('success-text');
     kEl.textContent = `獲得キーワード：${d.keyword}`;
     kEl.classList.remove('hidden');
-    document.querySelectorAll('.choice').forEach(b => b.disabled = true);
+    // 全ての選択肢を無効化
+    choiceButtons.forEach(b => b.disabled = true);
   } else {
     fEl.textContent = '残念...もう一度解いてみよう！';
     fEl.classList.remove('success-text');
+    // 間違えたボタンだけ赤くして無効化
+    const wrongBtn = choiceButtons[i];   // ← 追加
+    wrongBtn.classList.add('wrong');     // ← 追加
+    wrongBtn.disabled = true;            // ← 追加
   }
 }
-
 function openHint() {
   hintPopup.classList.remove('hidden');
 }
