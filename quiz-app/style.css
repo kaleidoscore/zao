@@ -49,3 +49,9 @@ button,.btn{padding:12px 14px;border:none;border-radius:28px;font-size:18px;back
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   pointer-events: auto; /* 中身だけ操作可能 */
 }
+/* 不正解になった選択肢 */
+.choice.wrong {
+  background: #e74c3c !important; /* 赤 */
+  color: #fff !important;
+  border: none;
+}
