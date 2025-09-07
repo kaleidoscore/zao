@@ -72,10 +72,11 @@ function check(i) {
 
 // --- ヒント処理 ---
 function openHint() {
-console.log("openHint called"); // ← 追加  
-const d = QUIZ[idx];
+  const d = QUIZ[idx];
   document.getElementById("quiz-hint-text").textContent = d.hint;
   document.getElementById("quiz-hint-popup").classList.remove("hidden");
+
+  console.log("openHint executed: hint =", d.hint);
 }
 function closeHint() {
   document.getElementById("quiz-hint-popup").classList.add("hidden");
