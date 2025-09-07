@@ -11,16 +11,16 @@ function checkAnswer() {
     // 判定ボタンをフェードアウト
     checkBtn.classList.add("fade-out");
 
-    // フェードアウト完了後に非表示にする
+    // フェードアウト後に非表示へ（0.6秒後）
     setTimeout(() => {
-      checkBtn.classList.add("hidden");
+      checkBtn.style.display = "none";   // ← classList.add("hidden") ではなく直接 display:none
+    }, 600);
 
-      // さらに 2秒後にアンケートボタン表示
-      setTimeout(() => {
-        surveyBtn.classList.remove("hidden");
-      }, 2000);
-
-    }, 600); // transition の 0.6秒に合わせる
+    // アンケートボタンを2秒後に表示
+    setTimeout(() => {
+      surveyBtn.classList.remove("hidden");
+      surveyBtn.classList.add("fade-in"); // ← フェードインさせる場合
+    }, 2000);
 
   } else {
     feedback.textContent = "答えが違うみたいだ...。キーワードをもう一度見直してみよう！";
