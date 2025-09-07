@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>ゴール</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="quiz-container" role="main">
+    <h1 class="app-title">ゴール！</h1>
+
+    <section class="card glass">
+      <p class="goal-lead">5つのキーワードをボタンで選んで、下のスロットに並べよう。</p>
+      <p>蔵王ジャンプ台の別名は<br><strong>アリオンテック蔵王〇〇〇〇〇</strong></p>
+
+      <!-- 候補(例) は最初から表示（非クリックのヒント） -->
+      <div class="tips">
+        <div class="tips-title">並べ替え候補（例）</div>
+        <ul class="tip-list" aria-label="並べ替えの候補例">
+          <li class="tip">シャンツェ（正答）</li>
+          <li class="tip">ャシンツェ</li>
+          <li class="tip">ンツシェャ</li>
+        </ul>
+      </div>
+
+      <!-- キーワードボタン -->
+      <div class="key-pool" aria-label="キーワードボタン">
+        <button class="chip" data-char="ツ" type="button">ツ</button>
+        <button class="chip" data-char="ャ" type="button">ャ</button>
+        <button class="chip" data-char="ェ" type="button">ェ</button>
+        <button class="chip" data-char="シ" type="button">シ</button>
+        <button class="chip" data-char="ン" type="button">ン</button>
+      </div>
+
+      <!-- スロット -->
+      <div class="slot-grid" aria-label="答えのスロット">
+        <button class="slot" aria-label="1文字目のスロット" type="button"></button>
+        <button class="slot" aria-label="2文字目のスロット" type="button"></button>
+        <button class="slot" aria-label="3文字目のスロット" type="button"></button>
+        <button class="slot" aria-label="4文字目のスロット" type="button"></button>
+        <button class="slot" aria-label="5文字目のスロット" type="button"></button>
+      </div>
+
+      <div class="goal-actions">
+        <button id="submit-final" class="btn" type="button">判定</button>
+      </div>
+
+      <div id="goal-feedback" class="feedback" aria-live="polite"></div>
+
+      <a id="survey-link" class="btn link-btn hidden" href="https://forms.gle/mfHe6rbxjTjCdYtG6" target="_blank" rel="noopener">アンケートにご協力お願いします</a>
+    </section>
+  </main>
+
+  <script>
+  (function(){
+    const CORRECT = "シャンツェ";
+    const pool = document.querySelector(".key-pool");
+    const chips = Array.from(document.querySelectorAll(".chip"));
+    const slots = Array.from(document.querySelectorAll(".slot"));
+    const feedback = document.getElementById("goal-feedback");
+    const link = document.getElementById("survey-link");
+
+    function getAnswer(){
+      return slots.map(s => s.textContent.trim()).join("");
+    }
+    function firstEmptySlot(){
+      return slots.find(s => !s.textContent.trim());
+    }
+    function clearSlot(slot){
+      const ch = slot.textContent.trim();
+      if(!ch) return;
+      // 同じ文字のチップを再度使用可能に
+      const target = chips.find(c => c.dataset.char === ch && c.disabled);
+      if(target) target.disabled = false;
+      slot.textContent = "";
+      slot.classList.remove("filled");
+    }
+
+    // chip を押したら最初の空スロットに入る
+    chips.forEach(chip => {
+      chip.addEventListener("click", () => {
+        const empty = firstEmptySlot();
+        if(!empty) return;
+        empty.textContent = chip.dataset.char;
+        empty.classList.add("filled");
+        chip.disabled = true;
+      });
+    });
+
+    // スロットを押すと削除（プールに戻す）
+    slots.forEach(slot => {
+      slot.addEventListener("click", () => clearSlot(slot));
+    });
+
+    document.getElementById("submit-final").addEventListener("click", () => {
+      const ans = getAnswer();
+      if(ans === CORRECT){
+        feedback.textContent = "Congratulation!";
+        feedback.classList.add("success-text");
+        link.classList.remove("hidden");
+      }else{
+        feedback.textContent = "答えが違うみたいだ...。キーワードをもう一度見直してみよう！";
+        feedback.classList.remove("success-text");
+        link.classList.add("hidden");
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+/* ===== Theme & Reset ===== */
+:root{
+  --c-bg1:#b3ecff;
+  --c-bg2:#a0f0d0;
+  --c-green:#20c997;         /* マーメイドグリーン */
+  --c-turquoise:#00bfa6;
+  --c-accent:#66d9ff;
+  --c-success:#7bd23c;       /* 黄緑 */
+  --radius:20px;
+}
+
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  /* 背景画像＋グラデーションオーバーレイ */
+  background:
+    linear-gradient(0deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
+    linear-gradient(135deg, var(--c-bg1), var(--c-bg2)),
+    url('IMG_5086.JPG') center center / cover fixed no-repeat;
+  color:#102;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+.app-title{
+  margin:16px 0;
+  font-size: clamp(20px, 5vw, 28px);
+  color:#045e63;
+  text-align:center;
+  text-shadow: 0 1px 2px rgba(255,255,255,.6);
+}
+
+.quiz-container{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card{
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 16px;
+}
+/* ガラス風カード */
+.glass{
+  background: rgba(255,255,255,0.86);
+  backdrop-filter: blur(2px);
+}
+
+.question{
+  font-size: clamp(18px, 4.5vw, 22px);
+  margin: 4px 0 12px;
+  line-height: 1.5;
+}
+
+.choices{
+  list-style: none;
+  padding:0;
+  margin:0;
+  display: grid;
+  gap: 10px;
+}
+
+.choices li{ margin:0; }
+
+/* タップしやすいボタン（ホバー演出なし） */
+button, .btn{
+  display:inline-block;
+  width:100%;
+  min-height:48px;
+  padding: 12px 14px;
+  border:none;
+  border-radius: 28px;
+  font-size: clamp(16px, 4.2vw, 18px);
+  line-height:1.3;
+  background: linear-gradient(90deg, var(--c-accent), var(--c-green));
+  color:#fff;
+  font-weight: 700;
+  letter-spacing: .03em;
+  touch-action: manipulation;
+}
+
+button:focus-visible, .btn:focus-visible{
+  outline: 3px solid rgba(32,201,151,.6);
+  outline-offset: 2px;
+}
+
+.hint-btn{
+  margin-top: 14px;
+  background: linear-gradient(90deg, var(--c-turquoise), var(--c-green));
+  width: auto;
+}
+
+/* フィードバック */
+.feedback{
+  margin-top:12px;
+  font-size: clamp(16px, 4vw, 18px);
+  font-weight: 800;
+}
+
+/* Success! 表示（黄緑） */
+.success-text{
+  color: var(--c-success);
+  font-size: clamp(18px, 4.6vw, 22px);
+  animation: pop .35s ease;
+}
+@keyframes pop{
+  from{ transform: scale(.9); opacity:.5; }
+  to{ transform: scale(1); opacity:1; }
+}
+
+/* キーワード：半透明白ブロック＋グリーン文字 */
+.keyword-block{
+  margin-top: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.85);
+  color: var(--c-green);
+  font-size: clamp(18px, 4.6vw, 20px);
+  font-weight: 800;
+  border-radius: 12px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+.hidden{ display:none !important; }
+
+/* ===== ヒント・ポップアップ（下部トースト） ===== */
+.hint-popup{
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 1000;
+  background: transparent;
+}
+.hint-content{
+  margin: 0 auto 0;
+  max-width: 720px;
+  background: rgba(0,191,165,.96);
+  color:#fff;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -4px 12px rgba(0,0,0,.25);
+  padding: 14px 16px 18px;
+  position: relative;
+}
+#hint-text{ margin-right: 48px; }
+.close-btn{
+  position:absolute;
+  right: 10px;
+  top: 10px;
+  width:auto;
+  min-height: auto;
+  padding: 6px 10px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.2);
+  font-size: 18px;
+}
+
+/* ===== goal: puzzle UI ===== */
+.goal-lead{ margin:0 0 8px; }
+.key-pool{
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+  margin:12px 0;
+}
+.chip{
+  width:auto; min-width:60px;
+  padding:10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.85);
+  color:#055; font-weight:800;
+  border: 2px solid var(--c-turquoise);
+}
+.chip:disabled{ opacity: .5; }
+
+.slot-grid{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:10px;
+  margin: 6px 0 10px;
+}
+.slot{
+  min-height:56px;
+  border-radius:12px;
+  background: rgba(255,255,255,.7);
+  border: 2px dashed rgba(0,0,0,.2);
+  color:#033; font-weight: 800;
+  font-size: clamp(18px, 5vw, 24px);
+}
+.slot.filled{ border-style: solid; border-color: var(--c-green); }
+
+.goal-actions{ margin-top: 6px; }
+.link-btn{ background: linear-gradient(90deg, var(--c-accent), var(--c-green)); width:auto; }
+
+/* Tips */
+.tips{ margin: 8px 0 12px; }
+.tips-title{ font-weight:800; margin-bottom:4px; color:#044; }
+.tip-list{ list-style:none; padding:0; margin:0; display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.tip{
+  padding:6px 10px;
+  background: rgba(255,255,255,.8);
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.1);
+}
+
+.sr-only{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* 低モーション設定に配慮 */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
