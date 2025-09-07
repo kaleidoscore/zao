@@ -76,11 +76,11 @@ function check(i) {
 // --- ヒント処理 ---
 function openHint() {
   const d = QUIZ[idx];
-  hintText.textContent = d.hint; // ← 開いた時点で代入
-  hintPopup.classList.remove('hidden');
+  hintText.textContent = d.hint;
+  hintPopup.classList.add('active'); // 表示
 }
 function closeHint() {
-  hintPopup.classList.add('hidden');
+  hintPopup.classList.remove('active'); // 非表示
 }
 
 hintBtn.onclick = openHint;
