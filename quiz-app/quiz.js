@@ -1,4 +1,3 @@
-console.log("quiz.js loaded!");
 const QUIZ = [
   {id:1,q:"蔵王ジャンプ台が建設されたのはいつでしょうか?",choices:["1976 年","1978 年","1980 年","1982 年"],correct:1,hint:"受付で配ったパンフレットを見よう!",keyword:"ツ"},
   {id:2,q:"ジャンプ台の下から上までの標高差と近い高さの建物は次のうちどれでしょうか?",choices:["山形市役所","山形県庁","上山スカイタワー","霞城セントラル"],correct:3,hint:"インフォメーションコーナー横の看板を見てみよう!",keyword:"ャ"},
@@ -73,45 +72,26 @@ function check(i) {
 // --- ヒント処理 ---
 function openHint() {
   const d = QUIZ[idx];
-  const popup = document.getElementById("quiz-hint-popup");
   document.getElementById("quiz-hint-text").textContent = d.hint;
-  popup.classList.remove("hidden");
-
-  // デバッグ強制表示
-  popup.style.display = "flex";
-
-  console.log("openHint executed: hint =", d.hint);
+  document.getElementById("quiz-hint-popup").classList.add("active"); // 表示
 }
+
 function closeHint() {
-  document.getElementById("quiz-hint-popup").classList.add("hidden");
+  document.getElementById("quiz-hint-popup").classList.remove("active"); // 非表示
 }
 
-document.getElementById("hint-btn").onclick = openHint;
-document.getElementById("quiz-close-hint").onclick = closeHint;
+// イベント設定
+document.getElementById("hint-btn").addEventListener("click", openHint);
+document.getElementById("quiz-close-hint").addEventListener("click", closeHint);
+
+// 背景クリックで閉じる
 document.getElementById("quiz-hint-popup").addEventListener("click", e => {
-  if (e.target.id === "quiz-hint-popup") closeHint();
+  if (e.target === e.currentTarget) {
+    closeHint();
+  }
 });
 
 // URL変更で問題切り替え
 window.addEventListener('hashchange', () => { idx = getIndex(); render(); });
 
-// 初期表示
 render();
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hintBtn = document.getElementById("hint-btn");
-  const closeHintBtn = document.getElementById("quiz-close-hint");
-  const hintPopup = document.getElementById("quiz-hint-popup");
-
-  if (hintBtn) {
-    hintBtn.addEventListener("click", openHint);
-  }
-  if (closeHintBtn) {
-    closeHintBtn.addEventListener("click", closeHint);
-  }
-  if (hintPopup) {
-    hintPopup.addEventListener("click", e => {
-      if (e.target.id === "quiz-hint-popup") closeHint();
-    });
-  }
-});
