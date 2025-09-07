@@ -11,11 +11,6 @@ const qEl = document.getElementById('question'),
       fEl = document.getElementById('feedback'),
       kEl = document.getElementById('keyword-block');
 
-const hintBtn = document.getElementById('quiz-hint-btn'),
-      hintPopup = document.getElementById('quiz-hint-popup'),
-      hintText = document.getElementById('quiz-hint-text'),
-      closeHintBtn = document.getElementById('quiz-close-hint');
-
 function getIndex() {
   const p = new URLSearchParams(location.search);
   let n = p.get('q');
@@ -35,7 +30,7 @@ let idx = getIndex();
 
 function render() {
   const d = QUIZ[idx];
-  closeHint(); // ヒントを自動で閉じる
+  closeHint(); // 問題切り替え時にヒント閉じる
   fEl.textContent = '';
   fEl.classList.remove('success-text');
   kEl.classList.add('hidden');
@@ -54,6 +49,7 @@ function render() {
   });
 }
 
+// 解答チェック
 function check(i) {
   const d = QUIZ[idx];
   const choiceButtons = document.querySelectorAll('.choice');
@@ -79,19 +75,20 @@ function openHint() {
   document.getElementById("quiz-hint-text").textContent = d.hint;
   document.getElementById("quiz-hint-popup").classList.remove("hidden");
 }
-
 function closeHint() {
   document.getElementById("quiz-hint-popup").classList.add("hidden");
 }
 
-// ヒントボタンにイベントを設定
 document.getElementById("hint-btn").onclick = openHint;
 document.getElementById("quiz-close-hint").onclick = closeHint;
-
-// ポップアップの外側をクリックしたら閉じる
 document.getElementById("quiz-hint-popup").addEventListener("click", e => {
   if (e.target.id === "quiz-hint-popup") closeHint();
 });
+
+// URL変更で問題切り替え
+window.addEventListener('hashchange', () => { idx = getIndex(); render(); });
+
+render();
 
 
 window.addEventListener('hashchange', () => { idx = getIndex(); render(); });
