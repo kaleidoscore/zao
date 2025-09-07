@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>クイズ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="quiz-container" role="main">
+    <h1 class="app-title">クイズに挑戦！</h1>
+
+    <section id="quiz-box" aria-labelledby="question" class="card glass">
+      <p id="question" class="question" role="heading" aria-level="2"></p>
+      <ul id="choices" class="choices" role="list"></ul>
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+      <div id="keyword-block" class="keyword-block hidden" aria-live="polite"></div>
+    </section>
+
+    <button id="hint-btn" class="btn hint-btn" aria-haspopup="dialog" aria-controls="hint-popup">ヒントを見る</button>
+  </main>
+
+  <div id="hint-popup" class="hint-popup hidden" role="dialog" aria-modal="true" aria-labelledby="hint-title">
+    <div class="hint-content">
+      <h2 id="hint-title" class="sr-only">ヒント</h2>
+      <p id="hint-text"></p>
+      <button id="close-hint" class="btn close-btn" aria-label="ヒントを閉じる">✖</button>
+    </div>
+  </div>
+
+  <script src="quiz.js"></script>
+  <script src="move.js"></script>
+</body>
+</html>
