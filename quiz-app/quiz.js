@@ -1,4 +1,4 @@
-const QUIZ=[
+const QUIZ = [
   {id:1,q:"蔵王ジャンプ台が建設されたのはいつでしょうか?",choices:["1976 年","1978 年","1980 年","1982 年"],correct:1,hint:"受付で配ったパンフレットを見よう!",keyword:"ツ"},
   {id:2,q:"ジャンプ台の下から上までの標高差と近い高さの建物は次のうちどれでしょうか?",choices:["山形市役所","山形県庁","上山スカイタワー","霞城セントラル"],correct:3,hint:"インフォメーションコーナー横の看板を見てみよう!",keyword:"ャ"},
   {id:3,q:"蔵王ジャンプ台で髙梨沙羅選手が出した最大の飛距離は次のうちどれでしょう?",choices:["101.0m","103.5m","106.0m","108.5m"],correct:2,hint:"ジャンプ台に設置されている看板を見てみよう!",keyword:"ェ"},
@@ -11,10 +11,10 @@ const qEl = document.getElementById('question'),
       fEl = document.getElementById('feedback'),
       kEl = document.getElementById('keyword-block');
 
-const hintBtn = document.getElementById('hint-btn'),
-      hintPopup = document.getElementById('hint-popup'),
-      hintText = document.getElementById('hint-text'),
-      closeHintBtn = document.getElementById('close-hint');
+const hintBtn = document.getElementById('quiz-hint-btn'),
+      hintPopup = document.getElementById('quiz-hint-popup'),
+      hintText = document.getElementById('quiz-hint-text'),
+      closeHintBtn = document.getElementById('quiz-close-hint');
 
 function getIndex() {
   const p = new URLSearchParams(location.search);
@@ -35,7 +35,7 @@ let idx = getIndex();
 
 function render() {
   const d = QUIZ[idx];
-  closeHint(); // ヒントは自動で閉じる
+  closeHint(); // ヒントを自動で閉じる
   fEl.textContent = '';
   fEl.classList.remove('success-text');
   kEl.classList.add('hidden');
@@ -77,10 +77,10 @@ function check(i) {
 function openHint() {
   const d = QUIZ[idx];
   hintText.textContent = d.hint;
-  hintPopup.classList.add('active'); // 表示
+  hintPopup.classList.remove('hidden');
 }
 function closeHint() {
-  hintPopup.classList.remove('active'); // 非表示
+  hintPopup.classList.add('hidden');
 }
 
 hintBtn.onclick = openHint;
